@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jessie Math - 規律問題PRO</title>
+    
+    <meta name="description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <meta property="og:title" content="Jessie Math - 規律問題PRO">
+    <meta property="og:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="g6-u3-1.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:image:alt" content="Jessie Math 遊戲封面">
+    <link rel="image_src" href="g6-u3-1.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jessie Math - 規律問題PRO">
+    <meta name="twitter:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <meta name="twitter:image" content="g6-u3-1.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #525eb2;
+            --primary-light: #f0f2fb;
+            --secondary: #ff9800;
+            --bg: #f9f9f9;
+            --text: #333;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-light);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #df8014;
+            background-color: transparent;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            color: #2b3a55;
+            letter-spacing: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .btn-home, .btn-lobby {
+            background: #fff;
+            color: #4a5c82;
+            border: 1px solid #d1d5e5;
+        }
+
+        .btn-home:hover, .btn-lobby:hover {
+            background: #f4f6fa;
+        }
+
+        .btn-current {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-current:hover {
+            background: #e4e7f5;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            flex-grow: 1;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3 {
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* Inputs & Buttons */
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 18px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button.action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        button.action-btn:hover {
+            background: #414b96;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-select {
+            background: #f0f0f0;
+            color: #555;
+            border: 2px solid transparent;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-select.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-select:hover {
+            background: #e0e0e0;
+        }
+
+        /* Gameplay */
+        .hud {
+            display: flex;
+            justify-content: space-between;
+            background: var(--primary-light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .combo-text {
+            color: var(--secondary);
+            font-size: 20px;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .question-image {
+            width: 100%;
+            max-height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .question-box {
+            font-size: 22px;
+            text-align: center;
+            margin: 15px 0 20px 0;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Drag & Drop UI Styles */
+        .drag-drop-container {
+            margin: 20px 0;
+            background: #fdfdfd;
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .drag-instruction {
+            text-align: center;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .choices-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .draggable-item {
+            font-size: 32px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            user-select: none;
+            transition: transform 0.1s, border-color 0.2s;
+        }
+
+        .draggable-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--secondary);
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .drop-zone {
+            height: 70px;
+            width: 80%;
+            max-width: 300px;
+            margin: 0 auto;
+            border: 3px dashed var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #888;
+            background: #f9f9f9;
+            transition: all 0.2s ease;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .drop-zone span {
+            font-size: 36px;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+            min-width: 100px;
+        }
+
+        .btn-pause { background: #757575; }
+        .btn-restart { background: #e53935; }
+        .btn-back { background: #8e24aa; }
+
+        /* Feedback Overlay */
+        .feedback {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+        .correct { color: #4CAF50; }
+        .wrong { color: #F44336; }
+
+        /* Leaderboard & Review */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            word-break: break-word;
+        }
+        th {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .rank-icon { font-size: 24px; }
+        
+        .review-item {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            word-break: break-word;
+        }
+        .review-item.correct-item {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-pill {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 50px;
+            padding: 12px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            gap: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .footer-left, .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .footer-icon {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .footer-copy, .footer-tagline {
+            font-weight: 500;
+        }
+
+        /* RWD & 螢幕方向控制 (Mobile 只允許橫向) */
+        #orientation-warning {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--primary-light);
+            color: var(--primary);
+            z-index: 10000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #orientation-warning i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: rotatePhone 1.5s infinite ease-in-out alternate;
+        }
+
+        @keyframes rotatePhone {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-90deg); }
+        }
+
+        /* 手機版 (寬度小於 767px) 直向時觸發 */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            #orientation-warning {
+                display: flex;
+            }
+            header, .container, footer {
+                display: none !important;
+            }
+        }
+
+        /* 手機版排版微調 */
+        @media screen and (max-width: 767px) {
+            .footer-pill {
+                border-radius: 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="orientation-warning">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <div>請將手機旋轉至橫向<br>以獲得最佳遊戲體驗！</div>
+    </div>
+
+    <header>
+        <div class="logo-area">
+            <img src="JESSIEMATH-Q.png" alt="Logo" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'45\' fill=\'none\' stroke=\'%23df8014\' stroke-width=\'5\'/><text x=\'50\' y=\'55\' font-size=\'20\' text-anchor=\'middle\' fill=\'%23333\'>JM</text></svg>'">
+            <span class="brand-name">Jessie Math</span>
+        </div>
+        <div class="nav-buttons">
+            <a href="https://jessiemath0703-chu.github.io/website2/" class="nav-btn btn-home">🏠 首頁</a>
+            <a href="https://jessiemath0703-chu.github.io/Game-Lobby/" class="nav-btn btn-lobby">🎮 遊戲大廳</a>
+            <a href="https://jessiemath0703-chu.github.io/Game-Lobby/#g6-u3" class="nav-btn btn-current">🔙 六年級規律問題</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="screen-login" class="screen active">
+            <h1>歡迎來到規律問題大挑戰！</h1>
+            <div style="background: var(--primary-light); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                <h3>📜 遊戲規則</h3>
+                <ul style="line-height: 1.8;">
+                    <li>遊戲以<strong>填充題或圖形拖曳</strong>方式進行，請填入/拖曳正確的答案。</li>
+                    <li><strong>連擊機制 (Combo)：</strong>連續答對可增加分數倍率！</li>
+                    <li><strong>時間獎懲：</strong>答對一題 <span style="color: green; font-weight: bold;">+5秒</span>，答錯一題 <span style="color: red; font-weight: bold;">-5秒</span>。</li>
+                    <li>系統會自動產生隨機數字與圖形，每次挑戰的題目都是全新的！</li>
+                </ul>
+            </div>
+            <input type="text" id="player-name" placeholder="請輸入你的名字以開始遊戲" autocomplete="off">
+            <button class="action-btn" onclick="goToMenu()">進入關卡選單</button>
+        </div>
+
+        <div id="screen-menu" class="screen">
+            <h2>👋 準備好挑戰了嗎，<span id="display-name" style="color: var(--secondary);"></span>！</h2>
+            
+            <h3>1. 選擇難度 (時間限制)</h3>
+            <div class="grid-3" id="difficulty-selection">
+                <button class="btn-select active" onclick="setDifficulty('basic', 90, this)">基礎 (90秒)</button>
+                <button class="btn-select" onclick="setDifficulty('advanced', 60, this)">進階 (60秒)</button>
+                <button class="btn-select" onclick="setDifficulty('boss', 45, this)">魔王 (45秒)</button>
+            </div>
+
+            <h3>2. 選擇關卡</h3>
+            <div class="grid-3">
+                <button class="action-btn" onclick="startGame(1)">第一關<br>間隔問題</button>
+                <button class="action-btn" onclick="startGame(2)">第二關<br>找規則</button>
+                <button class="action-btn" onclick="startGame(3)">第三關<br>選擇與組合</button>
+            </div>
+
+            <hr style="margin: 30px 0; border: none; border-top: 1px dashed #ccc;">
+            
+            <h3>🏆 英雄排行榜 (前10名)</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名次</th>
+                            <th>玩家</th>
+                            <th>挑戰關卡</th>
+                            <th>難度</th>
+                            <th>分數</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="screen-game" class="screen">
+            <div class="hud">
+                <div>⏳ 剩餘時間: <span id="time-left">0</span>秒</div>
+                <div>💯 分數: <span id="current-score">0</span></div>
+                <div class="combo-text" id="combo-display">Combo: 0</div>
+            </div>
+
+            <img id="question-image" class="question-image" src="" alt="題目圖片">
+            <div class="question-box" id="question-text">題目載入中...</div>
+            
+            <form id="answer-form" onsubmit="submitAnswer(event)">
+                <input type="text" id="player-answer" placeholder="請輸入數字答案" autocomplete="off">
+                
+                <div id="drag-drop-container" class="drag-drop-container" style="display:none;">
+                    <div class="drag-instruction">💡 提示：請將下方正確的圖形拖曳至框內，或直接點擊圖形選擇</div>
+                    <div id="choices-container" class="choices-container">
+                        </div>
+                    <div class="drop-zone" id="drop-zone" 
+                         ondragover="allowDrop(event)" 
+                         ondrop="drop(event)" 
+                         ondragenter="dragEnter(event)" 
+                         ondragleave="dragLeave(event)">
+                        拖曳至此處
+                    </div>
+                </div>
+
+                <button type="submit" class="action-btn">送出答案</button>
+            </form>
+
+            <div id="feedback" class="feedback"></div>
+
+            <div class="controls">
+                <button class="btn-pause" id="btn-pause" onclick="togglePause()">暫停</button>
+                <button class="btn-restart" onclick="restartGame()">重新開始</button>
+                <button class="btn-back" onclick="goToScreen('screen-menu')">回主選單</button>
+            </div>
+        </div>
+
+        <div id="screen-result" class="screen">
+            <h1>挑戰結束！</h1>
+            <h2 style="font-size: 36px; color: var(--secondary);">總分: <span id="final-score"></span></h2>
+            
+            <div style="display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" style="background: var(--primary); max-width: 300px;" onclick="showReview()">檢視復盤 (錯題回顧)</button>
+                <button class="action-btn" style="max-width: 300px;" onclick="goToScreen('screen-menu')">回主選單</button>
+            </div>
+        </div>
+
+        <div id="screen-review" class="screen">
+            <h2>📝 挑戰復盤</h2>
+            <div id="review-content"></div>
+            <button class="action-btn" style="margin-top: 20px;" onclick="goToScreen('screen-result')">返回成績</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-pill">
+            <div class="footer-left">
+                <div class="footer-dot" aria-hidden="true"></div>
+                <div class="footer-copy">© 2025–2026 Jessie Math 捷析老師. All rights reserved.</div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-icon" aria-hidden="true"><i class="fas fa-compass"></i></div>
+                <div class="footer-tagline">數學不迷路，Jessie帶你走向理解。</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 輔助函數：動態生成各式 SVG 題目圖片
+        function createIntervalSVG(nodes) {
+            let circles = '';
+            let step = 500 / (nodes - 1 || 1);
+            for(let i=0; i<nodes; i++) {
+                circles += `<circle cx='${50 + i*step}' cy='100' r='12' fill='%23ff9800' stroke='%23fff' stroke-width='3'/>`;
+            }
+            return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200'><rect width='100%' height='100%' fill='%23f0f2fb' rx='10'/><line x1='50' y1='100' x2='550' y2='100' stroke='%23525eb2' stroke-width='6'/>${circles}<text x='300' y='160' font-size='22' font-family='sans-serif' text-anchor='middle' fill='%23555'>間隔與物件示意圖</text></svg>`;
+        }
+
+        function createPatternSVG(patternArr) {
+            let items = '';
+            let step = 500 / Math.max(patternArr.length, 1);
+            patternArr.forEach((p, i) => {
+                items += `<text x='${50 + i*step}' y='110' font-size='36' text-anchor='middle'>${p}</text>`;
+            });
+            return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200'><rect width='100%' height='100%' fill='%23fff3e0' rx='10'/>${items}<text x='300' y='170' font-size='22' font-family='sans-serif' text-anchor='middle' fill='%23555'>規律排列示意圖</text></svg>`;
+        }
+
+        function createComboSVG(text1, text2, text3) {
+            return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200'><rect width='100%' height='100%' fill='%23e8f5e9' rx='10'/><rect x='40' y='50' width='150' height='70' fill='%23fff' rx='8'/><text x='115' y='95' font-size='22' text-anchor='middle' fill='%23333'>${text1}</text><rect x='225' y='50' width='150' height='70' fill='%23fff' rx='8'/><text x='300' y='95' font-size='22' text-anchor='middle' fill='%23333'>${text2}</text><rect x='410' y='50' width='150' height='70' fill='%23fff' rx='8'/><text x='485' y='95' font-size='22' text-anchor='middle' fill='%23333'>${text3}</text><path d='M 190 85 L 225 85 M 375 85 L 410 85' stroke='%234caf50' stroke-width='4' stroke-dasharray='5,5'/><text x='300' y='160' font-size='22' font-family='sans-serif' text-anchor='middle' fill='%23555'>選擇與組合示意圖</text></svg>`;
+        }
+
+        // 動態題庫 (全自動產生亂數變化)
+        const questionBank = { 1: [], 2: [], 3: [] };
+
+        function initQuestionBank() {
+            // Level 1: 間隔問題 (動態隨機數字 40題)
+            for(let i=0; i<40; i++) {
+                let interval = (Math.floor(Math.random() * 8) + 2) * 5; // 10 到 45 的倍數
+                let count = Math.floor(Math.random() * 20) + 6; // 6 到 25
+                let length = interval * count;
+                let type = Math.floor(Math.random() * 4);
+                
+                if(type === 0) {
+                    questionBank[1].push({
+                        q: `在長${length}公尺的道路一側，每隔${interval}公尺種樹，兩端都種，共種幾棵？`,
+                        a: (count + 1).toString(),
+                        inputType: 'text',
+                        img: createIntervalSVG(5)
+                    });
+                } else if(type === 1) {
+                    questionBank[1].push({
+                        q: `橋長${length}公尺，一側每隔${interval}公尺設路燈，兩端都不設，共要幾盞？`,
+                        a: (count - 1).toString(),
+                        inputType: 'text',
+                        img: createIntervalSVG(4)
+                    });
+                } else if(type === 2) {
+                    questionBank[1].push({
+                        q: `圓形溜冰場周長${length}公尺，每隔${interval}公尺裝1支扶手，共裝幾支？`,
+                        a: count.toString(),
+                        inputType: 'text',
+                        img: createIntervalSVG(6)
+                    });
+                } else {
+                    questionBank[1].push({
+                        q: `道路長${length}公尺，一側每隔${interval}公尺插旗子，一端插一端不插，共幾根？`,
+                        a: count.toString(),
+                        inputType: 'text',
+                        img: createIntervalSVG(5)
+                    });
+                }
+            }
+
+            // Level 2: 找規則 (移除循環提示、加入更多變化與圖形)
+            const shapeBase = [
+                ['☆','★','□','○'],
+                ['🟨','🟩','🟥'],
+                ['🏳️','🏴'],
+                ['◆','★','△','□'],
+                ['🌸','🌻','🌺'],
+                ['🍎','🍏','🍊','🍇'],
+                ['A','B','C','D']
+            ];
+            
+            // 2-1: 找規律圖形拖曳題 (30題)
+            for(let i=0; i<30; i++) {
+                let setIdx = Math.floor(Math.random() * shapeBase.length);
+                let base = shapeBase[setIdx];
+                
+                // 動態產生不同的循環結構：如 AB, ABC, AAB, ABBC, ABCD
+                let patternType = Math.floor(Math.random() * 5);
+                let pattern = [];
+                if(patternType === 0) {
+                    pattern = base.slice(0, Math.floor(Math.random() * 2) + 2); // 簡單循環 AB 或 ABC
+                } else if(patternType === 1) {
+                    pattern = [base[0], base[0], base[1]]; // AAB
+                    if(base[2] && Math.random() > 0.5) pattern.push(base[2]); // AABC
+                } else if(patternType === 2) {
+                    pattern = [base[0], base[1], base[1]]; // ABB
+                    if(base[2]) pattern.push(base[2]); // ABBC
+                } else if(patternType === 3) {
+                    pattern = [base[0], base[1], base[0], base[2]]; // ABAC
+                } else {
+                    pattern = [...base]; // 完整陣列
+                }
+                
+                let N = Math.floor(Math.random() * 120) + 30; // 找出第 30~149 個
+                let ans = pattern[(N-1) % pattern.length];
+                let uniqueChoices = [...new Set(pattern)]; 
+                
+                // 為了讓玩家有足夠資訊判斷，顯示約 6 個圖案
+                let displayPattern = [...pattern, ...pattern, ...pattern].slice(0, 6);
+                displayPattern.push('...');
+                
+                questionBank[2].push({
+                    q: `觀察圖形排列「${pattern.join('、')}...」，請找出規律，第${N}個圖案會是哪一個？`,
+                    a: ans,
+                    inputType: 'drag',
+                    choices: uniqueChoices,
+                    img: createPatternSVG(displayPattern)
+                });
+            }
+            
+            // 2-2: 火柴棒計算題 (相連三角形) (10題)
+            for(let i=0; i<10; i++) {
+                let start = 3;
+                let add = 2;
+                let num = Math.floor(Math.random() * 15) + 10;
+                let ansMath = start + add * (num - 1);
+                questionBank[2].push({
+                    q: `用火柴棒排相連的三角形，第1個需${start}根，之後每多排1個要加${add}根。排${num}個相連的三角形共需幾根？`,
+                    a: ansMath.toString(),
+                    inputType: 'text',
+                    img: createPatternSVG(['△','△△','△△△','...'])
+                });
+            }
+
+            // 2-3: 火柴棒計算題 (相連正方形) (10題)
+            for(let i=0; i<10; i++) {
+                let start = 4;
+                let add = 3;
+                let num = Math.floor(Math.random() * 15) + 10;
+                let ansMath = start + add * (num - 1);
+                questionBank[2].push({
+                    q: `用火柴棒排相連的正方形，第1個需${start}根，之後每多排1個要加${add}根。排${num}個相連的正方形共需幾根？`,
+                    a: ansMath.toString(),
+                    inputType: 'text',
+                    img: createPatternSVG(['□','□□','□□□','...'])
+                });
+            }
+
+            // 2-4: 數字規律排列題 (10題)
+            for(let i=0; i<10; i++) {
+                let baseNums = [1, 5, 9, 2, 6, 8, 4, 7];
+                // 隨機取 3~4 個數字做為循環
+                let patternLength = Math.floor(Math.random() * 2) + 3;
+                let startIndex = Math.floor(Math.random() * 4);
+                let pattern = baseNums.slice(startIndex, startIndex + patternLength);
+                
+                let N = Math.floor(Math.random() * 80) + 20; 
+                let ans = pattern[(N-1) % pattern.length];
+                let displayPattern = [...pattern, ...pattern, ...pattern].slice(0, 6);
+                displayPattern.push('...');
+
+                questionBank[2].push({
+                    q: `有一排數字按照固定規律排列：「${pattern.join('、')}...」，請問第${N}個數字是多少？`,
+                    a: ans.toString(),
+                    inputType: 'text',
+                    img: createPatternSVG(displayPattern)
+                });
+            }
+
+            // Level 3: 選擇與組合 (動態隨機數字 40題)
+            for(let i=0; i<40; i++) {
+                let type = Math.floor(Math.random() * 3);
+                if(type === 0) {
+                    let top = Math.floor(Math.random() * 4) + 2;
+                    let bottom = Math.floor(Math.random() * 5) + 2;
+                    questionBank[3].push({
+                        q: `衣櫃裡有${top}件上衣、${bottom}件褲子。上衣搭配褲子，共有幾種穿搭組合？`,
+                        a: (top * bottom).toString(),
+                        inputType: 'text',
+                        img: createComboSVG(`上衣 ${top}件`, `褲子 ${bottom}件`, '穿搭組合')
+                    });
+                } else if (type === 1) {
+                    let a = Math.floor(Math.random() * 3) + 2;
+                    let b = Math.floor(Math.random() * 4) + 2;
+                    let c = Math.floor(Math.random() * 3) + 2;
+                    questionBank[3].push({
+                        q: `飲料店有${a}種果汁、${b}種茶、${c}種冰沙，各買一杯，有幾種組合？`,
+                        a: (a * b * c).toString(),
+                        inputType: 'text',
+                        img: createComboSVG(`果汁 ${a}種`, `茶飲 ${b}種`, `冰沙 ${c}種`)
+                    });
+                } else {
+                    let p1 = Math.floor(Math.random() * 4) + 2;
+                    let p2 = Math.floor(Math.random() * 4) + 2;
+                    questionBank[3].push({
+                        q: `學校到超商有${p1}條路，超商到家有${p2}條路，從學校經過超商回到家有幾種走法？`,
+                        a: (p1 * p2).toString(),
+                        inputType: 'text',
+                        img: createComboSVG(`至超商 ${p1}路`, `至家 ${p2}路`, `路線組合`)
+                    });
+                }
+            }
+        }
+
+        // 初始化題庫
+        initQuestionBank();
+
+        const levelNames = { 1: "間隔問題", 2: "找規則", 3: "選擇與組合" };
+        const diffNames = { "basic": "基礎", "advanced": "進階", "boss": "魔王" };
+
+        let playerName = "";
+        let currentDifficulty = "basic";
+        let initialTime = 90;
+        
+        // Game State
+        let timer;
+        let timeLeft = 0;
+        let score = 0;
+        let combo = 0;
+        let isPaused = false;
+        let currentLevel = 1;
+        let activeQuestions = [];
+        let currentQuestionIndex = 0;
+        let reviewData = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLeaderboard();
+        });
+
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            clearInterval(timer);
+        }
+
+        function goToMenu() {
+            const nameInput = document.getElementById('player-name').value.trim();
+            if(!nameInput) {
+                alert("請輸入您的名字！");
+                return;
+            }
+            playerName = nameInput;
+            document.getElementById('display-name').innerText = playerName;
+            goToScreen('screen-menu');
+            renderLeaderboard();
+        }
+
+        function setDifficulty(diff, time, btnElement) {
+            currentDifficulty = diff;
+            initialTime = time;
+            document.querySelectorAll('.btn-select').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        function startGame(level) {
+            currentLevel = level;
+            timeLeft = initialTime;
+            score = 0;
+            combo = 0;
+            isPaused = false;
+            reviewData = [];
+            
+            // 每次挑戰重新洗牌 (隨機題型)
+            activeQuestions = [...questionBank[level]].sort(() => Math.random() - 0.5);
+            currentQuestionIndex = 0;
+
+            document.getElementById('btn-pause').innerText = "暫停";
+            updateHUD();
+            loadQuestion();
+            goToScreen('screen-game');
+
+            clearInterval(timer);
+            timer = setInterval(gameTick, 1000);
+        }
+
+        function restartGame() {
+            startGame(currentLevel);
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('btn-pause').innerText = isPaused ? "繼續" : "暫停";
+            
+            const currentQ = activeQuestions[currentQuestionIndex];
+            
+            if(isPaused) {
+                document.getElementById('question-text').innerText = "遊戲暫停中...";
+                document.getElementById('question-image').style.display = "none";
+                document.querySelector('#answer-form button').disabled = true;
+            } else {
+                document.getElementById('question-text').innerText = currentQ.q;
+                if(currentQ.img) document.getElementById('question-image').style.display = "block";
+                document.querySelector('#answer-form button').disabled = false;
+            }
+        }
+
+        function gameTick() {
+            if (isPaused) return;
+            timeLeft--;
+            updateHUD();
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+
+        function updateHUD() {
+            document.getElementById('time-left').innerText = Math.max(0, timeLeft);
+            document.getElementById('current-score').innerText = score;
+            document.getElementById('combo-display').innerText = `Combo: ${combo}`;
+        }
+
+        /* ----- Drag and Drop Logic ----- */
+        function dragStart(ev) {
+            ev.dataTransfer.setData("text", ev.target.innerText);
+        }
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function dragEnter(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+        function dragLeave(ev) {
+            ev.currentTarget.classList.remove('drag-over');
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('drag-over');
+            var data = ev.dataTransfer.getData("text");
+            setDropZoneValue(data);
+        }
+        
+        // 給手機/平板點擊使用的便捷功能
+        function selectChoice(value) {
+            setDropZoneValue(value);
+        }
+
+        function setDropZoneValue(value) {
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.innerHTML = `<span>${value}</span>`;
+            dropZone.setAttribute("data-value", value);
+            dropZone.style.borderColor = "var(--primary)";
+            dropZone.style.background = "var(--primary-light)";
+        }
+        /* ------------------------------- */
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= activeQuestions.length) {
+                activeQuestions = [...questionBank[currentLevel]].sort(() => Math.random() - 0.5);
+                currentQuestionIndex = 0;
+            }
+            
+            const currentQ = activeQuestions[currentQuestionIndex];
+            document.getElementById('question-text').innerText = currentQ.q;
+            
+            const imgEl = document.getElementById('question-image');
+            if (currentQ.img) {
+                imgEl.src = currentQ.img;
+                imgEl.style.display = "block";
+            } else {
+                imgEl.style.display = "none";
+            }
+
+            const textInput = document.getElementById('player-answer');
+            const dragContainer = document.getElementById('drag-drop-container');
+            const choicesDiv = document.getElementById('choices-container');
+            const dropZone = document.getElementById('drop-zone');
+
+            // 根據題型動態切換輸入介面
+            if (currentQ.inputType === 'drag') {
+                textInput.style.display = 'none';
+                textInput.required = false;
+                dragContainer.style.display = 'block';
+                
+                // 重製選項區與拖拉區
+                choicesDiv.innerHTML = '';
+                currentQ.choices.forEach(choice => {
+                    const el = document.createElement('div');
+                    el.className = 'draggable-item';
+                    el.draggable = true;
+                    el.innerText = choice;
+                    el.ondragstart = dragStart;
+                    el.onclick = () => selectChoice(choice);
+                    choicesDiv.appendChild(el);
+                });
+                
+                dropZone.innerHTML = '拖曳至此處';
+                dropZone.setAttribute('data-value', '');
+                dropZone.style.borderColor = 'var(--border)';
+                dropZone.style.background = '#f9f9f9';
+                
+            } else {
+                dragContainer.style.display = 'none';
+                textInput.style.display = 'block';
+                textInput.required = true;
+                textInput.value = "";
+                textInput.focus();
+            }
+        }
+
+        function submitAnswer(e) {
+            e.preventDefault();
+            if(isPaused) return;
+
+            const currentQ = activeQuestions[currentQuestionIndex];
+            let inputVal = "";
+
+            // 取得作答內容 (依據題型)
+            if (currentQ.inputType === 'drag') {
+                inputVal = document.getElementById('drop-zone').getAttribute('data-value');
+                if (!inputVal) {
+                    alert("請拖曳或點擊一個圖形作為答案！");
+                    return;
+                }
+            } else {
+                inputVal = document.getElementById('player-answer').value.trim();
+                if (!inputVal) return;
+            }
+
+            const feedbackEl = document.getElementById('feedback');
+            const isCorrect = inputVal === currentQ.a;
+            
+            reviewData.push({
+                q: currentQ.q,
+                userAns: inputVal,
+                correctAns: currentQ.a,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                combo++;
+                let points = 10 * combo;
+                score += points;
+                timeLeft += 5;
+                feedbackEl.innerHTML = `<span class="correct">答對了！ +${points}分 / +5秒</span>`;
+            } else {
+                combo = 0;
+                timeLeft -= 5;
+                feedbackEl.innerHTML = `<span class="wrong">答錯了！正確答案是 ${currentQ.a} (-5秒)</span>`;
+            }
+
+            updateHUD();
+            
+            setTimeout(() => {
+                feedbackEl.innerHTML = "";
+                if(timeLeft > 0) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            clearInterval(timer);
+            goToScreen('screen-result');
+            document.getElementById('final-score').innerText = score;
+            saveScore();
+        }
+
+        function saveScore() {
+            let board = JSON.parse(localStorage.getItem('jessieMathBoard')) || [];
+            board.push({
+                name: playerName,
+                level: levelNames[currentLevel],
+                diff: diffNames[currentDifficulty],
+                score: score,
+                date: new Date().getTime()
+            });
+            board.sort((a, b) => b.score - a.score || b.date - a.date);
+            localStorage.setItem('jessieMathBoard', JSON.stringify(board));
+        }
+
+        function renderLeaderboard() {
+            let board = JSON.parse(localStorage.getItem('jessieMathBoard')) || [];
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = "";
+            
+            board.slice(0, 10).forEach((entry, index) => {
+                let icon = "";
+                if (index === 0) icon = "🥇";
+                else if (index === 1) icon = "🥈";
+                else if (index === 2) icon = "🥉";
+                else icon = `<span style="font-size: 16px; font-weight:bold; color: #777;">${index + 1}</span>`;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="rank-icon">${icon}</td>
+                        <td><strong>${entry.name}</strong></td>
+                        <td>${entry.level}</td>
+                        <td>${entry.diff}</td>
+                        <td style="color: var(--secondary); font-weight: bold;">${entry.score}</td>
+                    </tr>
+                `;
+            });
+
+            if(board.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5">目前還沒有紀錄，快來挑戰成為第一名吧！</td></tr>`;
+            }
+        }
+
+        function showReview() {
+            goToScreen('screen-review');
+            const reviewDiv = document.getElementById('review-content');
+            reviewDiv.innerHTML = "";
+
+            if (reviewData.length === 0) {
+                reviewDiv.innerHTML = "<p>本次挑戰沒有作答紀錄。</p>";
+                return;
+            }
+
+            reviewData.forEach((item, i) => {
+                const itemClass = item.isCorrect ? "correct-item" : "";
+                const statusIcon = item.isCorrect ? "✅ 答對" : "❌ 答錯";
+                reviewDiv.innerHTML += `
+                    <div class="review-item ${itemClass}">
+                        <p><strong>Q${i+1}:</strong> ${item.q}</p>
+                        <p>你的答案: <span style="text-decoration: ${item.isCorrect ? 'none' : 'line-through'}; font-size:18px;">${item.userAns || '未作答'}</span></p>
+                        ${!item.isCorrect ? `<p style="color: #d32f2f; font-weight: bold; font-size:18px;">正確答案: ${item.correctAns}</p>` : ''}
+                        <p style="text-align: right; font-weight: bold; margin:0;">${statusIcon}</p>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
